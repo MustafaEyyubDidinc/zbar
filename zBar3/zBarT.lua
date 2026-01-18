@@ -1,4 +1,4 @@
-﻿local _G = getfenv(0)
+﻿local _G = _G
 --[[
 	Functions for Derivates
 --]]

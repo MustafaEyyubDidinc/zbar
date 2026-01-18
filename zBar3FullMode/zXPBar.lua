@@ -1,4 +1,4 @@
-local _G = getfenv(0)
+local _G = _G
 local XPHeight = 20
 
 CreateFrame("Frame","zXPBar",UIParent,"SecureFrameTemplate")

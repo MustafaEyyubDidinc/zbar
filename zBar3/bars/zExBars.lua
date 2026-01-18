@@ -1,4 +1,4 @@
-local _G = getfenv(0)
+local _G = _G
 local abs = math.abs
 
 local NUM_ZEXBAR_BAR = 4

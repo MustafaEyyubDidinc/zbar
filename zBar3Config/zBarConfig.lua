@@ -1,4 +1,4 @@
-local _G = getfenv(0)
+local _G = _G
 
 CreateFrame("Frame", "zBarConfig", UIParent)
 zBar3:AddPlugin(zBarConfig)
