@@ -261,6 +261,7 @@ end
 
 function zBar3:RegisterSlash()
 	SlashCmdList["ZBAR"] = function(msg)
+		msg = msg and strtrim(msg) or ""
 		if msg == "autopage" then
 			zBar3Data["pageTrigger"] = not zBar3Data["pageTrigger"]
 			zBar3:print("Auto Page: " .. (zBar3Data["pageTrigger"] and "|cff00ff00ON|r" or "|cffff0000OFF|r"), 1, 1, 0)

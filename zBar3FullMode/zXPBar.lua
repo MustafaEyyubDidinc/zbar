@@ -12,7 +12,8 @@ function zXPBar:Load()
 	MainMenuExpBar:SetParent(zXPBar)
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetPoint("BOTTOM")
-	MainMenuExpBar_SetWidth(512)
+	-- MainMenuExpBar_SetWidth(512)
+	MainMenuExpBar:SetWidth(512)
 	MainMenuExpBar:SetHeight(XPHeight)
 	
 	zBar3.buttons['zXPBar1'] = "MainMenuExpBar"
@@ -138,7 +139,8 @@ function zXPBar:UpdateButtons()
 	local value = zBar3Data[self:GetName()]
 	if not value.num or value.num < 1 then value.num = 1 end
 	local width = 512 + 256*(value.num-1)
-	MainMenuExpBar_SetWidth(width)
+	-- MainMenuExpBar_SetWidth(width)
+	MainMenuExpBar:SetWidth(width)
 	
 	ReputationWatchBar:SetWidth(width)
 	ReputationWatchBar.OverlayFrame:SetWidth(width)

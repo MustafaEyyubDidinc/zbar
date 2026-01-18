@@ -2,7 +2,7 @@ zBarConfigTemplate = {}
 
 function zBarConfigTemplate:Load(typeName)
 	self.typeName = typeName
-	self.text = getglobal(self:GetName().."Text")
+	self.text = _G[self:GetName().."Text"]
 	if (self.text) then
 		self.SetText = function(self, text)
 			self.text:SetText(text)
