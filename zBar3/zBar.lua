@@ -82,8 +82,8 @@ end
 --[[ Addon Init ]]
 function zBar3:Init()
 	-- version
-	self.version = GetAddOnMetadata("zBar3", "Version")
-	self.author  = GetAddOnMetadata("zBar3", "Author")
+	self.version = C_AddOns.GetAddOnMetadata("zBar3", "Version")
+	self.author  = C_AddOns.GetAddOnMetadata("zBar3", "Author")
 
 	-- data
 	zBar3Data = zBar3Data or {
@@ -150,6 +150,7 @@ function zBar3:InitGridUpdater()
 	-- add events for grid, must after bars initial
 	self:RegisterEvent("ACTIONBAR_SHOWGRID")
 	self:RegisterEvent("ACTIONBAR_HIDEGRID")
+	self:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
 	self:RegisterEvent("PLAYER_ENTERING_WORLD")
 	-- hooks for grid
 	hooksecurefunc("MultiActionBar_ShowAllGrids",function()
@@ -183,6 +184,11 @@ function zBar3:UpdateGrids(event, ...)
 		zBar3:IncGrid()
 	elseif event == "ACTIONBAR_HIDEGRID" then
 		zBar3:DecGrid()
+	elseif event == "ACTIONBAR_PAGE_CHANGED" then
+		-- Update grids to reflect potential page changes
+		for i, bar in ipairs(zBar3.gridUpdaters) do
+			self:SafeCallFunc(bar.UpdateGrid, bar)
+		end
 	else
 		for i, bar in ipairs(zBar3.gridUpdaters) do
 			self:SafeCallFunc(bar.UpdateGrid, bar)
@@ -255,6 +261,14 @@ end
 
 function zBar3:RegisterSlash()
 	SlashCmdList["ZBAR"] = function(msg)
+		if msg == "autopage" then
+			zBar3Data["pageTrigger"] = not zBar3Data["pageTrigger"]
+			zBar3:print("Auto Page: " .. (zBar3Data["pageTrigger"] and "|cff00ff00ON|r" or "|cffff0000OFF|r"), 1, 1, 0)
+			if zMainBar and zMainBar.UpdateStateHeader then
+				zMainBar:UpdateStateHeader()
+			end
+			return
+		end
 		local offset = tonumber(msg)
 		for name,bar in pairs(zBar3.bars) do
 			if msg == "resetall" then

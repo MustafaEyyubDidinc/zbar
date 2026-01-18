@@ -1,4 +1,4 @@
-local _G = getfenv(0)
+local _G = _G
 --[[
 	Usage: zBar3:GetDefault("zMainBar")
 	or : zBar3:GetDefault("zMainBar", "pos")

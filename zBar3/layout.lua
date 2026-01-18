@@ -1,4 +1,4 @@
-local _G = getfenv(0)
+local _G = _G
 --[[
 	< Arrangements >
 	All functions in this part is for arrangement changing,

@@ -1,4 +1,4 @@
-﻿local _G = getfenv(0)
+﻿local _G = _G
 local format = string.format
 
 CreateFrame("Frame", "zMainBar", UIParent, "SecureHandlerStateTemplate")
@@ -44,7 +44,7 @@ function zMainBar:GetStateCommand()
 	local header = "[vehicleui]12;"
 
 	if zBar3Data["pageTrigger"] then
-		header = header .. '[mod:SELFCAST]2;[help]2;'
+		header = header .. '[mod:alt]2;[help]2;'
 	end
 
 	for i=2,6 do
